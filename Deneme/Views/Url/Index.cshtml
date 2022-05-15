@@ -1,0 +1,69 @@
+﻿
+@using Deneme.Models
+@model List<Link>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UrlLayout.cshtml";
+}
+
+<div class="w3pvt-logo align-self">
+    <h2>Indata Link İle Bağlantılarınız<br /> İçin Kısa Link Oluşturun</h2>
+    <img src="~/Photo/photo.png" style="width:250px;margin-left:200px;" />
+    <hr />
+    <form action="#" method="post">
+        <input type="text" class="form-control" name="LongUrl" placeholder="Link Giriniz..." required="" style="height:58px;">
+        <button type="submit" class="btn">Link Kısalt</button>
+    </form>
+   
+</div>
+<hr />
+<table class="table table-bordered" style="background-color:white;border-radius:15px;">
+    <tr>
+
+        <th>Uzun Link</th>
+        <th>Kısa Link</th>
+        <th>QR Kodu Üret</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.LongUrl</td>
+            <td><a href="@x.LongUrl">@x.ShortUrl</a></td>
+            <td><a href="/Url/QRCode/@x.Id" class="btn btn-danger" style="color:white" >QR Kodu Üret</a></td>
+
+        </tr>
+    }
+</table>
+
+@*<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-center" style="color:purple">QR Kod</h2>
+
+            </div>
+            <div class="modal-body">
+                <div class="w3pvt-logo align-self">
+                    @using (Html.BeginForm("Index", "Url", FormMethod.Post))
+                    {
+                        <input type="hidden" name="kod" value="@ViewBag.d" placeholder="Butona Tıklayınız..." readonly="" ; required style="width:900px;height:40px;" /><br />
+                        <input type="submit" value="QR Kodu Oluştur" style="background-color:red;color:white;">
+
+
+                    }
+
+                </div>
+
+
+                <br />
+                @if (ViewBag.karekodImage != null)
+                {
+                    <img src="@ViewBag.karekodImage" alt="" style="width:400px;height:400px" />
+                }
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" data-dismiss="modal">Kapat</a>
+            </div>
+        </div>
+    </div>
+</div>*@
